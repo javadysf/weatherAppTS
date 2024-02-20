@@ -1,16 +1,33 @@
-type WeatherCardProps ={
-    name : string,
-    temp?:number,
-}
+type WeatherCardProps = {
+  details: {
+    name: string;
+    temp?: number;
+    img: string;
+    description: string;
+    main: string;
+  };
+};
 
-const WeatherCard = (props:WeatherCardProps) => {
+const WeatherCard = ({ details }: WeatherCardProps) => {
+  const url = `https://openweathermap.org/img/wn/${details.img}.png`;
 
   return (
-    <div className="w-[320px] h-[450px] rounded-2xl bg-blue-100">
-        {props.name}
-        {props.temp}
-    </div>
-  )
-}
+    <div className="flex flex-col justify-center items-center w-[320px] h-[450px] rounded-2xl bg-amber-300 opacity-80 gap-8 p-8">
+        <span className="flex gap-4">
+      <img className="w-16 h-16" src={url} />
+        </span>
+      <h2 className="italic font-black text-3xl">{details.name}</h2>
+      <hr className="blue-900"/>
 
-export default WeatherCard
+      <h2 className="text-xl">Temp  {details.temp} C</h2>
+    
+      <h2 className="text-xl">{details.main} </h2>
+   
+  
+      <h2 className="text-xl">{details.description} </h2>
+
+    </div>
+  );
+};
+
+export default WeatherCard;
