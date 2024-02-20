@@ -1,7 +1,7 @@
 import  WeatherApp from "./Components/WeatherApp/index" 
 
 
-const App = () => {
+const App = ():JSX.Element => {
   return (
     <div>
       <WeatherApp/>
