@@ -1,5 +1,4 @@
 import WAInput from "../Common/WAInput";
-import WAButton from "../Common/WAButton";
 import WeatherCard from "../WeatherApp/WeatherCard";
 import { useState } from "react";
 import { axiosTest } from "../../Core/Services/api/Api";
@@ -36,29 +35,31 @@ const index = () => {
     setw(data);
   };
 
-  const [city, setCity] = useState("");
   const [w, setw] = useState<cityWeather>();
 
-  const temp = Math.floor(w?.main?.temp!) - 273;
+  const details ={
+     temp : Math.floor(w?.main?.temp!) - 273,
+     img : w?.weather[0].icon!,
+     main: w?.weather[0].main!,
+     description:w?.weather[0].description!,
+     name:w?.name!
+  }
 
   return (
-    <div className="bg-amber-500 flex gap-5">
+    <div className="bg-blue-100 justify-between flex gap-5">
       <div>
         <img src={WPic} className="w-[730px] h-[730px]" />
       </div>
-      <>
-      </>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex w-[50%] gap-16 flex-col items-center">
         <div className="flex">
         <WAInput
           handleChange={(event) => {
-            setCity(event.target.value);
+            getData( event.target.value)
           }}
           name="hi"
         />
-        <WAButton handleClick={() => getData(city)} />
-        </div>
-        <WeatherCard temp={temp} name={w?.name!} />
+        </div>{w?<WeatherCard details={details} />:""}
+        
       </div>
     </div>
   );
