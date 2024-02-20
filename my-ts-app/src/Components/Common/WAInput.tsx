@@ -7,8 +7,8 @@ type WAInputType = {
 const WAInput = (props:WAInputType) => {
 
   return (
-   <div className="flex gap-2 p-8 ">
-   <div className="text-3xl font-bold" >Enter City Name</div>
+   <div className="flex gap-4 p-8 ">
+   <div className="text-3xl font-black" >Enter City Name</div>
    <input className="w-48 border rounded p-2" onChange={props.handleChange} />
    </div>
   )
